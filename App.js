@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import {PrivateKey} from 'bsv-wasm-bundler';
+// import {PrivateKey} from 'bsv-wasm-bundler';
 import React from 'react';
 import type {Node} from 'react';
 import {
@@ -57,8 +57,17 @@ const Section = ({children, title}): Node => {
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const random = PrivateKey.fromRandom().toHex();
-  console.log(random);
+  // const random = PrivateKey.fromRandom().toHex();
+  // console.log(random);
+  React.useEffect(() => {
+    const pls = async () => {
+      const {PrivateKey} = await import('bsv-wasm-bundler');
+      const random = PrivateKey.fromRandom().toHex();
+      console.log(random);
+    };
+
+    pls();
+  }, []);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
